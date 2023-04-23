@@ -92,7 +92,7 @@ export class PaymentService {
    *
    * @return response()
    */
-  delete(id:number){
+  delete(id:string){
     return this.httpClient.delete(this.apiURL + '/payments/' + id, this.httpOptions)
   
     .pipe(

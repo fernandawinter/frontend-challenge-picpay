@@ -1,5 +1,11 @@
 export interface Payment {
-    id: number;
+    _id: string;
+    username: string;
+    firstName: string;
+    lastName: string;
     title: string;
-    body: string;
+    date: string;
+    value: number;
+    isPayed: boolean;
+    image: string;
 }

@@ -35,9 +35,9 @@ export class ListComponent implements OnInit {
    *
    * @return response()
    */
-  deletePayment(id: number) {
+  deletePayment(id: string) {
     this.paymentService.delete(id).subscribe(res => {
-      this.payments = this.payments.filter(item => item.id !== id);
+      this.payments = this.payments.filter(item => item._id !== id);
       console.log('Payment deleted successfully!');
     })
   }

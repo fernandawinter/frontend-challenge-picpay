@@ -14,11 +14,11 @@
         </div>
 
         <div class="form-group">
-            <label for="body">Body</label>
-            <textarea formControlName="body" id="body" type="text" [(ngModel)]="payment.body" class="form-control">
+            <label for="date">Date</label>
+            <textarea formControlName="date" id="date" type="text" [(ngModel)]="payment.date" class="form-control">
             </textarea>
-            <div *ngIf="f['body'].touched && f['body'].invalid" class="alert alert-danger">
-                <div *ngIf="f['body'].errors && f['body'].errors['required']">Body is required.</div>
+            <div *ngIf="f['date'].touched && f['date'].invalid" class="alert alert-danger">
+                <div *ngIf="f['date'].errors && f['date'].errors['required']">Date is required.</div>
             </div>
         </div>
 
