@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../post.service';
-import { Router } from '@angular/router';
+import { PaymentService } from '../payment.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Payment } from '../payment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class CreateComponent implements OnInit {
+export class EditComponent implements OnInit {
 
+  id!: number;
+  payment!: Payment;
   form!: FormGroup;
 
   /*------------------------------------------
@@ -18,7 +21,8 @@ export class CreateComponent implements OnInit {
   --------------------------------------------
   --------------------------------------------*/
   constructor(
-    public postService: PostService,
+    public paymentService: PaymentService,
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
@@ -28,6 +32,11 @@ export class CreateComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['paymentId'];
+    this.paymentService.find(this.id).subscribe((data: Payment) => {
+      this.payment = data;
+    });
+
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required]),
       body: new FormControl('', Validators.required)
@@ -50,9 +59,9 @@ export class CreateComponent implements OnInit {
    */
   submit() {
     console.log(this.form.value);
-    this.postService.create(this.form.value).subscribe((res: any) => {
-      console.log('Post created successfully!');
-      this.router.navigateByUrl('post/index');
+    this.paymentService.update(this.id, this.form.value).subscribe((res: any) => {
+      console.log('Payment updated successfully!');
+      this.router.navigateByUrl('payment/index');
     })
   }
 

@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Payment List</h1>
+
+    <a href="#" routerLink="/payment/create/" class="btn btn-success">Create New Payment</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th width="250px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let payment of payments">
+                <td>{{ payment.id }}</td>
+                <td>{{ payment.title }}</td>
+                <td>{{ payment.body }}</td>
+                <td>
+                    <a href="#" [routerLink]="['/payment/', payment.id, 'view']" class="btn btn-info">View</a>
+                    <a href="#" [routerLink]="['/payment/', payment.id, 'edit']" class="btn btn-primary">Edit</a>
+                    <button type="button" (click)="deletePayment(payment.id)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
