@@ -8,9 +8,9 @@ import { EditComponent } from './edit/edit.component';
 const routes: Routes = [
   { path: 'payment', redirectTo: 'payment/list', pathMatch: 'full' },
   { path: 'payment/list', component: ListComponent },
-  { path: 'payment/:postId/view', component: ViewComponent },
+  { path: 'payment/:paymentId/view', component: ViewComponent },
   { path: 'payment/create', component: CreateComponent },
-  { path: 'payment/:postId/edit', component: EditComponent }
+  { path: 'payment/:paymentId/edit', component: EditComponent }
 ];
 
 @NgModule({

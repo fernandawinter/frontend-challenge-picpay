@@ -78,9 +78,9 @@ export class PaymentService {
    *
    * @return response()
    */
-  update(id:number, post:Payment): Observable<any> {
+  update(id:number, payment:Payment): Observable<any> {
   
-    return this.httpClient.put(this.apiURL + '/payments/' + id, JSON.stringify(post), this.httpOptions)
+    return this.httpClient.put(this.apiURL + '/payments/' + id, JSON.stringify(payment), this.httpOptions)
  
     .pipe( 
       catchError(this.errorHandler)
