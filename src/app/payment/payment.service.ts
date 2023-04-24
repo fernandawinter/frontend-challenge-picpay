@@ -11,7 +11,7 @@ import { Payment } from './payment';
 })
 export class PaymentService {
   
-  private apiURL = "https://jsonplaceholder.typicode.com";
+  private apiURL = "https://3kniis.sse.codesandbox.io";
     
   /*------------------------------------------
   --------------------------------------------
@@ -20,7 +20,8 @@ export class PaymentService {
   --------------------------------------------*/
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBpY3BheS13ZWIiLCJzdWIiOiI2MmI0YTk4MGVkYTY5ODVjNTNiN2ExY2UiLCJpYXQiOjE2ODIyODc2OTQsImV4cCI6MTY4MjM3NDA5NH0.jCnAa8A_Dx_x0ErrV7LDUjgmSy-5lT7WI-_e0oRifgo'
     })
   }
    
@@ -37,8 +38,9 @@ export class PaymentService {
    * @return response()
    */
   getAll(): Observable<any> {
-  
-    return this.httpClient.get(this.apiURL + '/payments/')
+    
+
+    return this.httpClient.get(this.apiURL + '/payments')
   
     .pipe(
       catchError(this.errorHandler)
@@ -52,7 +54,7 @@ export class PaymentService {
    */
   create(payment:Payment): Observable<any> {
   
-    return this.httpClient.post(this.apiURL + '/payments/', JSON.stringify(payment), this.httpOptions)
+    return this.httpClient.post(this.apiURL + '/payments', JSON.stringify(payment), this.httpOptions)
   
     .pipe(
       catchError(this.errorHandler)
