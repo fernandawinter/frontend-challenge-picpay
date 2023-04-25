@@ -11,18 +11,8 @@ export class ListComponent implements OnInit {
 
   payments: Payment[] = [];
 
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
   constructor(public paymentService: PaymentService) { }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   ngOnInit(): void {
     this.paymentService.getAll().subscribe((data: Payment[]) => {
       console.log('data', data);
@@ -31,16 +21,10 @@ export class ListComponent implements OnInit {
     })
   }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   deletePayment(id: string) {
     this.paymentService.delete(id).subscribe(res => {
       this.payments = this.payments.filter(item => item._id !== id);
       console.log('Payment deleted successfully!');
     })
   }
-
 }

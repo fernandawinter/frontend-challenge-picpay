@@ -13,11 +13,6 @@ export class PaymentService {
   
   private apiURL = "https://3kniis.sse.codesandbox.io";
     
-  /*------------------------------------------
-  --------------------------------------------
-  Http Header Options
-  --------------------------------------------
-  --------------------------------------------*/
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,18 +20,8 @@ export class PaymentService {
     })
   }
    
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
   constructor(private httpClient: HttpClient) { }
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
+
   getAll(): Observable<any> {
     
 
@@ -47,11 +32,6 @@ export class PaymentService {
     )
   }
     
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   create(payment:Payment): Observable<any> {
   
     return this.httpClient.post(this.apiURL + '/payments', JSON.stringify(payment), this.httpOptions)
@@ -61,11 +41,6 @@ export class PaymentService {
     )
   }  
     
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   find(id:number): Observable<any> {
   
     return this.httpClient.get(this.apiURL + '/payments/' + id)
@@ -74,12 +49,7 @@ export class PaymentService {
       catchError(this.errorHandler)
     )
   }
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
+
   update(id:number, payment:Payment): Observable<any> {
   
     return this.httpClient.put(this.apiURL + '/payments/' + id, JSON.stringify(payment), this.httpOptions)
@@ -89,11 +59,6 @@ export class PaymentService {
     )
   }
        
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   delete(id:string){
     return this.httpClient.delete(this.apiURL + '/payments/' + id, this.httpOptions)
   
@@ -102,11 +67,6 @@ export class PaymentService {
     )
   }
       
-  /** 
-   * Write code on Method
-   *
-   * @return response()
-   */
   errorHandler(error:any) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {

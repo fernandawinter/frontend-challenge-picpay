@@ -12,21 +12,11 @@ export class CreateComponent implements OnInit {
 
   form!: FormGroup;
 
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
   constructor(
     public paymentService: PaymentService,
     private router: Router
   ) { }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   ngOnInit(): void {
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required]),
@@ -34,20 +24,10 @@ export class CreateComponent implements OnInit {
     });
   }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   get f() {
     return this.form.controls;
   }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   submit() {
     console.log(this.form.value);
     this.paymentService.create(this.form.value).subscribe((res: any) => {
@@ -55,5 +35,4 @@ export class CreateComponent implements OnInit {
       this.router.navigateByUrl('payment/index');
     })
   }
-
 }

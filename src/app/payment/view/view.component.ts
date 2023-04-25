@@ -13,22 +13,12 @@ export class ViewComponent implements OnInit {
   id!: number;
   payment!: Payment;
 
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
   constructor(
     public paymentService: PaymentService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   ngOnInit(): void {
     this.id = this.route.snapshot.params['paymentId'];
 
@@ -36,5 +26,4 @@ export class ViewComponent implements OnInit {
       this.payment = data;
     });
   }
-
 }
