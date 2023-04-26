@@ -6,6 +6,12 @@ import { catchError } from 'rxjs/operators';
   
 import { Payment } from './payment';
   
+const getAccessToken = () => {
+  const token = localStorage.getItem('access_token');
+  console.log('token', token);
+  return token;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +22,7 @@ export class PaymentService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBpY3BheS13ZWIiLCJzdWIiOiI2MmI0YTk4MGVkYTY5ODVjNTNiN2ExY2UiLCJpYXQiOjE2ODIyODc2OTQsImV4cCI6MTY4MjM3NDA5NH0.jCnAa8A_Dx_x0ErrV7LDUjgmSy-5lT7WI-_e0oRifgo'
+      'Authorization': 'Bearer ' + getAccessToken()
     })
   }
    
@@ -25,7 +31,7 @@ export class PaymentService {
   getAll(): Observable<any> {
     
 
-    return this.httpClient.get(this.apiURL + '/payments')
+    return this.httpClient.get(this.apiURL + '/payments', this.httpOptions)
   
     .pipe(
       catchError(this.errorHandler)
@@ -43,7 +49,7 @@ export class PaymentService {
     
   find(id:number): Observable<any> {
   
-    return this.httpClient.get(this.apiURL + '/payments/' + id)
+    return this.httpClient.get(this.apiURL + '/payments/' + id, this.httpOptions)
   
     .pipe(
       catchError(this.errorHandler)
@@ -69,6 +75,7 @@ export class PaymentService {
       
   errorHandler(error:any) {
     let errorMessage = '';
+    console.log('error', error);
     if(error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {

@@ -14,9 +14,9 @@ export class ListComponent implements OnInit {
   constructor(public paymentService: PaymentService) { }
 
   ngOnInit(): void {
-    this.paymentService.getAll().subscribe((data: Payment[]) => {
+    this.paymentService.getAll().subscribe((data: any) => {
       console.log('data', data);
-      this.payments = data;
+      this.payments = data.items;
       console.log(this.payments);
     })
   }
