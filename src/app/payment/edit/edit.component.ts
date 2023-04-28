@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../payment.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Payment } from '../payment';
+import { Payment, PaymentDto } from '../payment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -15,54 +15,61 @@ export class EditComponent implements OnInit {
   payment!: Payment;
   form!: FormGroup;
 
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
   constructor(
     public paymentService: PaymentService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   ngOnInit(): void {
     this.id = this.route.snapshot.params['paymentId'];
     this.paymentService.find(this.id).subscribe((data: Payment) => {
+      console.log('data', data)
       this.payment = data;
-    });
-
-    this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      body: new FormControl('', Validators.required)
+      this.form = new FormGroup({
+        username: new FormControl(this.payment.username, [Validators.required]),
+        firstName: new FormControl(this.payment.firstName, Validators.required),
+        lastName: new FormControl(this.payment.lastName, Validators.required),
+        title: new FormControl(this.payment.title, Validators.required),
+        date: new FormControl(this.payment.date, Validators.required),
+        value: new FormControl(this.payment.value, Validators.required),
+        isPayed: new FormControl(this.payment.isPayed, Validators.required)
+      });
     });
   }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   get f() {
     return this.form.controls;
   }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
   submit() {
-    console.log(this.form.value);
-    this.paymentService.update(this.id, this.form.value).subscribe((res: any) => {
-      console.log('Payment updated successfully!');
-      this.router.navigateByUrl('payment/index');
-    })
+    const payment: Payment = {
+      _id: this.form.value._id,
+      username: this.form.value.username,
+      firstName: this.form.value.firstName,
+      lastName: this.form.value.lastName,
+      title: this.form.value.title,
+      value: this.form.value.value,
+      isPayed: this.form.value.isPayed,     
+      date: (new Date()).toISOString()
+    }
+    this.paymentService.update(this.id, payment).subscribe({
+      next: (res: any) => { 
+      }, 
+      error: (err: any) => {
+        console.log(err)
+      }
+    });
   }
-
 }
+
+// this.authService.authenticate(login).subscribe({
+//   next: (data: DataResponse) => { () => 
+//     console.log('data', data);
+//     if(data.access_token) {
+//       localStorage.setItem('access_token', data.access_token);
+//       this.router.navigate(['payment/list']);
+//     }
+//     this.isLoading = false; 
+//   }, error: (err) => {console.log(err)}
+// });
