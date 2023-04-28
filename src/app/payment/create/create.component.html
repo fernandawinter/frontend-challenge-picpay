@@ -1,7 +1,7 @@
 <div class="container">
-    <h1>Create New Payment</h1>
+    <h1>Criar novo pagamento</h1>
 
-    <a href="#" routerLink="/payment/list" class="btn btn-primary">Back</a>
+    <a href="#" routerLink="/payment/list" class="btn btn-secondary mt-4">Back</a>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
 
@@ -39,7 +39,7 @@
 
         <div class="form-group">
             <label for="value">Valor</label>
-            <input formControlName="value" id="value" type="text" class="form-control">
+            <input formControlName="value" id="value" type="number" class="form-control">
             <div *ngIf="f['value'].touched && f['value'].invalid" class="alert alert-danger">
                 <div *ngIf="f['value'].errors && f['value'].errors['required']">Valor é requerido.</div>
             </div>

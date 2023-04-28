@@ -20,12 +20,12 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      username: new FormControl('', [Validators.required]),
+      username: new FormControl('', Validators.required),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required), 
       title: new FormControl('', Validators.required), 
       value: new FormControl('', Validators.required), 
-      isPayed: new FormControl('', Validators.required)
+      isPayed: new FormControl('')
     });
   }
 
@@ -45,7 +45,11 @@ export class CreateComponent implements OnInit {
     }
     this.paymentService.create(payment).subscribe({
       next: (res: any) => { 
-      }, error: (err: any) => {console.log(err)}
+        this.router.navigate(['payment/list']);
+      }, 
+      error: (err: any) => {
+        console.log('err',err)
+      }
     });
   }
 }
