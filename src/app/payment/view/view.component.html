@@ -1,21 +1,31 @@
 <div class="container">
     <h1>View Payment</h1>
 
-    <a href="#" routerLink="/payment/index" class="btn btn-primary">Back</a>
+    <a href="#" routerLink="/payment/list" class="btn btn-primary">Back</a>
 
     <div>
-        <strong>ID:</strong>
-        <p>{{ payment._id }}</p>
+        <strong>Usuário:</strong>
+        <p>{{ payment.username }}</p>
     </div>
 
     <div>
-        <strong>Title:</strong>
+        <strong>Título:</strong>
         <p>{{ payment.title }}</p>
     </div>
 
     <div>
-        <strong>Date:</strong>
+        <strong>Data:</strong>
         <p>{{ payment.date }}</p>
+    </div>
+
+    <div>
+        <strong>Valor:</strong>
+        <p>{{ payment.value }}</p>
+    </div>
+
+    <div>
+        <strong>Pago:</strong>
+        <p>{{ payment.isPayed }}</p>
     </div>
 
 </div>
