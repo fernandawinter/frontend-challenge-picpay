@@ -7,7 +7,6 @@ import { Payment, PaymentDto } from '../payment';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
 
@@ -48,7 +47,6 @@ export class CreateComponent implements OnInit {
         this.router.navigate(['payment/list']);
       }, 
       error: (err: any) => {
-        console.log('err',err)
       }
     });
   }
