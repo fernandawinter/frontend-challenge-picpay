@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -8,7 +8,6 @@ import { Payment, PaymentDto } from './payment';
 
 const getAccessToken = () => {
   const token = localStorage.getItem('access_token');
-  console.log('token', token);
   return token;
 }
 
@@ -28,35 +27,34 @@ export class PaymentService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.httpClient.get(this.apiURL + '/payments', this.httpOptions)
+  getAll(searchText?: string): Observable<any> {
+    const params = new HttpParams().set('filter', searchText || '');
+    const options = {
+      headers: this.httpOptions.headers,
+      params,
+    }
+    return this.httpClient.get(this.apiURL + '/payments', options)
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
   create(payment: PaymentDto): Observable<any> {
-
     return this.httpClient.post(this.apiURL + '/payments', JSON.stringify(payment), this.httpOptions)
-
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
   find(id: number): Observable<any> {
-
     return this.httpClient.get(this.apiURL + '/payments/' + id, this.httpOptions)
-
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
   update(id: number, payment: Payment): Observable<any> {
-
     return this.httpClient.put(this.apiURL + '/payments/' + id, JSON.stringify(payment), this.httpOptions)
-
       .pipe(
         catchError(this.errorHandler)
       )
@@ -64,7 +62,6 @@ export class PaymentService {
 
   delete(id: string) {
     return this.httpClient.delete(this.apiURL + '/payments/' + id, this.httpOptions)
-
       .pipe(
         catchError(this.errorHandler)
       )
@@ -72,7 +69,6 @@ export class PaymentService {
 
   errorHandler(error: any) {
     let errorMessage = '';
-    console.log('error', error);
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {

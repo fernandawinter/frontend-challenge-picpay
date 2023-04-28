@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
+  searchText: string = ''
   payments: Payment[] = [];
 
   constructor(public paymentService: PaymentService, private router: Router) { }
@@ -17,9 +18,18 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.paymentService.getAll().subscribe({
       next: (data) => {
-        console.log('data', data);
         this.payments = data.items;
-        console.log(this.payments);
+      },
+      error: (err) => {
+        this.router.navigate(['login']);
+      }
+    })
+  }
+
+  onSearchClick(): void {
+    this.paymentService.getAll(this.searchText).subscribe({
+      next: (data) => {
+        this.payments = data.items;
       },
       error: (err) => {
         this.router.navigate(['login']);
@@ -28,9 +38,8 @@ export class ListComponent implements OnInit {
   }
 
   deletePayment(id: string) {
-    this.paymentService.delete(id).subscribe(res => {
+    this.paymentService.delete(id).subscribe(res => { 
       this.payments = this.payments.filter(item => item._id !== id);
-      console.log('Payment deleted successfully!');
     })
   }
 }
