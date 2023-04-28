@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 import { Login } from './login';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 interface DataResponse {
   message: string,
@@ -50,7 +50,7 @@ export class LoginComponent {
     }
     console.log('login', login);
     this.authService.authenticate(login).subscribe({
-      next: (data: DataResponse) => { () => 
+      next: (data: DataResponse) => { 
         console.log('data', data);
         if(data.access_token) {
           localStorage.setItem('access_token', data.access_token);
