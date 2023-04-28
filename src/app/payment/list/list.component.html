@@ -1,49 +1,43 @@
 <div class="container">
-    <h1>Payment List</h1>
+  <h1>Lista de pagamento</h1>
 
-    <a href="#" routerLink="/payment/create/" class="btn btn-success">Create New Payment</a>
+  <div class="row"> 
+    <div class="col">
+      <a href="#" routerLink="/payment/create/" class="btn btn-success">Criar novo pagamento</a>
+    </div>
+  
+    <div class="input-group mb-3 col">
+      <input type="text" class="form-control" placeholder="Insira um texto aqui...">
+      <button type="button" class="input-group-text">Pesquisar</button>
+    </div>
+  </div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Usuário</th>
-                <th>Título</th>
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Pago</th>
-                <th width="250px">Ação</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let payment of payments">
-                <td>{{ payment.firstName }}</td>
-                <td>{{ payment.title }}</td>
-                <td>{{ payment.date }}</td>
-                <td>{{ payment.value }}</td>
-                <td>{{ payment.isPayed }}</td>
-                <td>
-                    <a href="#" [routerLink]="['/payment/', payment._id, 'view']" class="btn btn-info">View</a>
-                    <a href="#" [routerLink]="['/payment/', payment._id, 'edit']" class="btn btn-primary">Edit</a>
-                    <button type="button" (click)="deletePayment(payment._id)" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <nav aria-label="Navegação de página exemplo">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Anterior">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Próximo">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+  <p *ngIf="!payments || payments.length <= 0" class="mt-2">Não há pagamentos para mostrar</p>
+
+  <table class="table table-striped mt-2" *ngIf="payments && payments.length > 0">
+    <thead>
+      <tr>
+        <th>Usuário</th>
+        <th>Título</th>
+        <th>Data</th>
+        <th>Valor</th>
+        <th>Pago</th>
+        <th width="250px">Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>{{ payment.firstName }}</td>
+        <td>{{ payment.title }}</td>
+        <td>{{ payment.date }}</td>
+        <td>R$ {{ payment.value }}</td>
+        <td>{{ payment.isPayed ? 'Sim' : 'Não'}}</td>
+        <td>
+          <a href="#" [routerLink]="['/payment/', payment._id, 'view']" class="btn btn-info ml-2">Visualizar</a>
+          <a href="#" [routerLink]="['/payment/', payment._id, 'edit']" class="btn btn-primary ml-2">Editar</a>
+          <button type="button" (click)="deletePayment(payment._id)" class="btn btn-danger ml-2">Deletar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
