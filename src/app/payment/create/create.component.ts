@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../payment.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Payment, PaymentDto } from '../payment';
 
 @Component({
   selector: 'app-create',
@@ -19,8 +20,12 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      body: new FormControl('', Validators.required)
+      username: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required), 
+      title: new FormControl('', Validators.required), 
+      value: new FormControl('', Validators.required), 
+      isPayed: new FormControl('', Validators.required)
     });
   }
 
@@ -29,10 +34,20 @@ export class CreateComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
-    this.paymentService.create(this.form.value).subscribe((res: any) => {
-      console.log('Payment created successfully!');
-      this.router.navigateByUrl('payment/index');
-    })
+    const payment: PaymentDto = {
+      username: this.form.value.username,
+      firstName: this.form.value.firstName,
+      lastName: this.form.value.lastName,
+      title: this.form.value.title,
+      value: this.form.value.value,
+      isPayed: this.form.value.isPayed,     
+      date: (new Date()).toISOString()
+    }
+    this.paymentService.create(payment).subscribe({
+      next: (res: any) => { 
+      }, error: (err: any) => {console.log(err)}
+    });
   }
 }
+
+
