@@ -1,27 +1,45 @@
-# FrontendChallengePicpay
+# PicPay - Frontend Challenge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+O desafio consiste em desenvolver uma aplicação com um login, e um dashboard com um CRUD com paginação, filtro e ordenaçao de colunas (ASC/DESC).
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tecnologias utilizadas
 
-## Code scaffolding
+- Angular CLI: versão 15.2.6
+- Angular: versão 15.2.0
+- Node: versão 18.16.0
+- Bootstrap: versão 5.2.3
+- Karma: versão 6.4.0
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Onde a aplicação está hospedada:
+- Netlify: `https://challenge-frontend-picpay.netlify.app`
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Como rodar a aplicação
 
-## Running unit tests
+- Rode o comando `ng build` para compilar o projeto. Os artefatos da compilação serão armazenados no diretório `dist/`
+- Rode o comando `ng serve` para iniciar o servidor. A porta `http://localhost:4200/` estará disponível para a visualização da aplicação.
+- Rode o comando `ng test` para iniciar os testes. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Como foi construído
+- Commits com conventional commits configuration - dando mais uniformidade para todos os commits feitos.
+- Nomes de variáveis sempre respeitando o Clean Code.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## O que poderia ter feito de diferente
+
+- Testes unitários: foram feitos testes no app component. Entendo que deveriam existir muitos outros testes, separados em Login, Create, Edit, List e View. Os testes do app component foram feitos utilizando o Karma.
+- Testes end-2-end: não deu tempo de adicionar testes E2E, mas a ideia era incorporar ao sistema de pagamentos, para a validação total. Para isso, seria utilizado o Protractor.
+- Uso de ícones com o Fontawesome: tentei utilizar o Fontawesome para colocar ícones no site, como no input para verificar se a senha está correta (eye e eye slash), e ícones ao lado de Usuário, Título, Data, Valor, Pago e Ação.
+- Também tentei colocar o favicon da Picpay (salvando em png e convertendo para ico, ou utilizando em png mesmo), porém sem sucesso.
+- Paginação: sabia o código necessário para montar uma ordenação de páginas, mas não para fazer funcionar com a API.
+
+
+## Aprendizados durante o desafio
+
+- Foi a primeira vez que fiz um CRUD mais completo, com componente de pesquisa.
+- Também aprendi mais sobre API's e endpoints.
+
+
