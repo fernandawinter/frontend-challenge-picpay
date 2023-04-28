@@ -7,8 +7,8 @@
     </div>
   
     <div class="input-group mb-3 col">
-      <input type="text" class="form-control" placeholder="Insira um texto aqui...">
-      <button type="button" class="input-group-text">Pesquisar</button>
+      <input type="text" class="form-control" placeholder="Insira um nome aqui..." [(ngModel)]="searchText">
+      <button type="button" class="input-group-text" (click)="onSearchClick()">Pesquisar</button>
     </div>
   </div>
 
