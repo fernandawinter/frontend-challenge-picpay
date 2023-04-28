@@ -26,7 +26,6 @@ export class LoginComponent {
   constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.password = 'password';
     this.form = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -43,10 +42,8 @@ export class LoginComponent {
       username: this.form.value.username,
       password: this.form.value.password,
     }
-    console.log('login', login);
     this.authService.authenticate(login).subscribe({
       next: (data: DataResponse) => { 
-        console.log('data', data);
         if(data.access_token) {
           localStorage.setItem('access_token', data.access_token);
           this.router.navigate(['payment/list']);
@@ -56,7 +53,6 @@ export class LoginComponent {
       error: (err) => {
         this.errorMessage = 'Não foi possível efetuar o login'; 
         this.isLoading = false;
-        console.log(err)
       }
     });
   }
