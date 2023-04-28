@@ -6,7 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { PaymentModule } from './payment/payment.module';
-import { LoginModule } from './login/login.module';
+import { LoginModule } from './auth/login/login.module';
+
 
 @NgModule({
   declarations: [

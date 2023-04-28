@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from '../auth.service';
 import { Login } from './login';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 interface DataResponse {
   message: string,
@@ -11,36 +13,33 @@ interface DataResponse {
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
+
   username = '';
   password = '';
   isLoading = false;
 
   form!: FormGroup;
-  show = false;
+  showPassword = false;
+  errorMessage = '';
 
   constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     // this.password = 'password';
     this.form = new FormGroup({
-      username: new FormControl('', [Validators.required]),
+      username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
   }
 
-  // onTogglePasswordView() {
-  //   if (this.password === 'password') {
-  //     this.password = 'text';
-  //     this.show = true;
-  //   } else {
-  //     this.password = 'password';
-  //     this.show = false;
-  //   }
-  // }
+  onTogglePasswordView() {
+   this.showPassword = !this.showPassword 
+  }
 
   onSubmit() {
     this.isLoading = true;
@@ -57,7 +56,12 @@ export class LoginComponent {
           this.router.navigate(['payment/list']);
         }
         this.isLoading = false; 
-      }, error: (err) => {console.log(err)}
+      }, 
+      error: (err) => {
+        this.errorMessage = 'Não foi possível efetuar o login'; 
+        this.isLoading = false;
+        console.log(err)
+      }
     });
   }
 }

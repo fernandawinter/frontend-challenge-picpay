@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
   
-import { Login } from '../login';
+import { Login } from './login/login';
   
 @Injectable({
   providedIn: 'root'
@@ -22,10 +22,8 @@ export class AuthService {
   
   constructor(private httpClient: HttpClient) { }
     
-  authenticate(login:Login): Observable<any> {
-  
+  authenticate(login:Login): Observable<any> {  
     return this.httpClient.post(this.apiURL + '/auth/login', JSON.stringify(login), this.httpOptions)
-  
     .pipe(
       catchError(this.errorHandler)
     )
