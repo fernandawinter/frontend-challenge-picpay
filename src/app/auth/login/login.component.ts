@@ -3,7 +3,6 @@ import { AuthService } from '../auth.service';
 import { Login } from './login';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
 interface DataResponse {
@@ -16,9 +15,6 @@ interface DataResponse {
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
-  faEye = faEye;
-  faEyeSlash = faEyeSlash;
-
   username = '';
   password = '';
   isLoading = false;

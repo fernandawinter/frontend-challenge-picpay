@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -14,8 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     LoginRoutingModule, 
     FormsModule,
-    ReactiveFormsModule,
-    FontAwesomeModule
+    ReactiveFormsModule
   ]
 })
 export class LoginModule { }

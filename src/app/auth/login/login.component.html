@@ -11,8 +11,8 @@
                     <div class="input-group">
                         <input formControlName="password" [type]="showPassword ? 'text' : 'password'" id="senha" class="form-control">
                         <button (click)="onTogglePasswordView()" type="button" class="input-group-addon">
-                            <fa-icon [icon]="faEye" *ngIf="!showPassword"></fa-icon>
-                            <fa-icon [icon]="faEyeSlash" *ngIf="showPassword"></fa-icon>
+                            <span *ngIf="!showPassword">Exibir senha</span>
+                            <span *ngIf="showPassword">Esconder senha</span>
                         </button>
                     </div>
                 </div>
