@@ -1,9 +1,9 @@
 <div class="container">
-    <h1>Update Payment</h1>
+    <h1>Atualizar pagamento</h1>
 
-    <a href="#" routerLink="/payment/list" class="btn btn-primary">Back</a>
+    <a href="#" routerLink="/payment/list" class="btn btn-secondary mt-4">Back</a>
 
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="mt-2">
 
         <div class="form-group">
             <label for="username"> Usuário:</label>
@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <label for="value">Valor</label>
-            <input formControlName="value" id="value" type="text" [(ngModel)]="payment.value" class="form-control">
+            <input formControlName="value" id="value" type="number" [(ngModel)]="payment.value" class="form-control">
             <div *ngIf="f['value'].touched && f['value'].invalid" class="alert alert-danger">
                 <div *ngIf="f['value'].errors && f['value'].errors['required']">Valor é requerido.</div>
             </div>
@@ -55,9 +55,11 @@
 
         <div class="form-group">
             <label for="isPayed">Pago</label>
-            <input formControlName="isPayed" id="isPayed" type="checkbox" [(ngModel)]="payment.isPayed">
+            <input formControlName="isPayed" id="isPayed" type="checkbox" [(ngModel)]="payment.isPayed" class="m-2">
         </div>
 
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+        <div class="mt-2">
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+        </div>
     </form>
 </div>

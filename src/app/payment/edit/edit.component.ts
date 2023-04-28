@@ -27,7 +27,7 @@ export class EditComponent implements OnInit {
       console.log('data', data)
       this.payment = data;
       this.form = new FormGroup({
-        username: new FormControl(this.payment.username, [Validators.required]),
+        username: new FormControl(this.payment.username, Validators.required),
         firstName: new FormControl(this.payment.firstName, Validators.required),
         lastName: new FormControl(this.payment.lastName, Validators.required),
         title: new FormControl(this.payment.title, Validators.required),
@@ -62,14 +62,3 @@ export class EditComponent implements OnInit {
     });
   }
 }
-
-// this.authService.authenticate(login).subscribe({
-//   next: (data: DataResponse) => { () => 
-//     console.log('data', data);
-//     if(data.access_token) {
-//       localStorage.setItem('access_token', data.access_token);
-//       this.router.navigate(['payment/list']);
-//     }
-//     this.isLoading = false; 
-//   }, error: (err) => {console.log(err)}
-// });
