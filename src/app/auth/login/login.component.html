@@ -21,6 +21,10 @@
                     <button class="btn btn-success" type="submit" class="form-control" *ngIf="!isLoading">Login</button>
                     <button class="btn btn-success" type="button" class="form-control" *ngIf="isLoading" disabled>Carregando...</button>
                 </div>
+
+                <div class="mt-2 text-danger">
+                    <p>{{ errorMessage }}</p>
+                </div>
             </div>
         </form>
     </div>

@@ -37,13 +37,14 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.errorMessage = ''
     this.isLoading = true;
     const login: Login = {
       username: this.form.value.username,
       password: this.form.value.password,
     }
     this.authService.authenticate(login).subscribe({
-      next: (data: DataResponse) => { 
+      next: (data: DataResponse) => {
         if(data.access_token) {
           localStorage.setItem('access_token', data.access_token);
           this.router.navigate(['payment/list']);
